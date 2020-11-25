@@ -75,7 +75,7 @@ class MPU9250{
     };
     MPU9250(I2C_t &bus,uint8_t address);
     MPU9250(SPIClass &bus,uint8_t csPin);
-    int begin();
+    int begin(bool busBegin = true);
     int setAccelRange(AccelRange range);
     int setGyroRange(GyroRange range);
     int setDlpfBandwidth(DlpfBandwidth bandwidth);

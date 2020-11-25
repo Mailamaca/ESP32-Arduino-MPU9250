@@ -43,21 +43,23 @@ MPU9250::MPU9250(SPIClass &bus,uint8_t csPin){
 }
 
 /* starts communication with the MPU-9250 */
-int MPU9250::begin(){
-  if( _useSPI ) { // using SPI for communication
-    // use low speed SPI for register setting
-    _useSPIHS = false;
-    // setting CS pin to output
-    pinMode(_csPin,OUTPUT);
-    // setting CS pin high
-    digitalWrite(_csPin,HIGH);
-    // begin SPI communication
-    _spi->begin();
-  } else { // using I2C for communication
-    // starting the I2C bus
-    _i2c->begin();
-    // setting the I2C clock
+int MPU9250::begin(bool busBegin){
+  if (busBegin) {
+    if( _useSPI) { // using SPI for communication
+      // use low speed SPI for register setting
+      _useSPIHS = false;
+      // setting CS pin to output
+      pinMode(_csPin,OUTPUT);
+      // setting CS pin high
+      digitalWrite(_csPin,HIGH);
+      // begin SPI communication
+      _spi->begin();
+    } else { // using I2C for communication
+      // starting the I2C bus
+      _i2c->begin();
+      // setting the I2C clock
     // _i2c->setClock(_i2cRate);
+    }
   }
   while(true)
   {
