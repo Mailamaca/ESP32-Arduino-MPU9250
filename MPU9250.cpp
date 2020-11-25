@@ -478,9 +478,9 @@ int MPU9250::readSensor() {
   _gx = ((float)(tX[0]*_gxcounts + tX[1]*_gycounts + tX[2]*_gzcounts) * _gyroScale) - _gxb;
   _gy = ((float)(tY[0]*_gxcounts + tY[1]*_gycounts + tY[2]*_gzcounts) * _gyroScale) - _gyb;
   _gz = ((float)(tZ[0]*_gxcounts + tZ[1]*_gycounts + tZ[2]*_gzcounts) * _gyroScale) - _gzb;
-  _hx = (((float)(_hxcounts) * _magScaleX) - _hxb)*_hxs;
-  _hy = (((float)(_hycounts) * _magScaleY) - _hyb)*_hys;
-  _hz = (((float)(_hzcounts) * _magScaleZ) - _hzb)*_hzs;
+  _hx = (((float)(hX[0]*_hxcounts + hX[1]*_hycounts + hX[2]*_hzcounts) * _magScaleX) - _hxb)*_hxs;
+  _hy = (((float)(hY[0]*_hxcounts + hY[1]*_hycounts + hY[2]*_hzcounts) * _magScaleY) - _hyb)*_hys;
+  _hz = (((float)(hZ[0]*_hxcounts + hZ[1]*_hycounts + hZ[2]*_hzcounts) * _magScaleZ) - _hzb)*_hzs;
   _t = ((((float) _tcounts) - _tempOffset)/_tempScale) + _tempOffset;
   return 1;
 }
